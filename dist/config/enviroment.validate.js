@@ -11,6 +11,8 @@ exports.environmentSchema = joi_1.default.object({
         .default('development'),
     PORT: joi_1.default.number().default(3000),
     CONNECTION_STRING: joi_1.default.string().uri().required(),
+    DATABASE: joi_1.default.string().default('car-buddy'),
     JWT_SECRET: joi_1.default.string().min(32).required(),
     JWT_EXPIRATION: joi_1.default.string().default('1h'),
+    SALT_ROUNDS: joi_1.default.number().required(),
 });

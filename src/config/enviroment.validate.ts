@@ -9,4 +9,5 @@ export const environmentSchema = Joi.object({
     DATABASE: Joi.string().default('car-buddy'),
     JWT_SECRET: Joi.string().min(32).required(),
     JWT_EXPIRATION: Joi.string().default('1h'),
+    SALT_ROUNDS: Joi.number().required(),
 })

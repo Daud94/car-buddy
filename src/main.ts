@@ -5,7 +5,6 @@ const configService = new ConfigService();
 
 
 const port: string = configService.get('PORT');
-console.log(port)
 
 app.listen(port, async() => {
     await connectDatabase();
