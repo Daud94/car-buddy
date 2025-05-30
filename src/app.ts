@@ -4,6 +4,7 @@ import {notFound} from "./middleware/not-found";
 import morgan from 'morgan';
 import {AuthController} from "./auth/auth.controller";
 import {CarsController} from "./cars/cars.controller";
+import {OrdersController} from "./orders/orders.controller";
 
 
 const app = express();
@@ -16,6 +17,7 @@ app.use(morgan('dev'));
 
 app.use('/auth', AuthController)
 app.use('/cars', CarsController)
+app.use('/orders', OrdersController)
 
 
 
