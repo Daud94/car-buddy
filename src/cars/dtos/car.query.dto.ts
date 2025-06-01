@@ -12,5 +12,5 @@ export const CarQueryDto = Joi.object({
     maxMileage: Joi.number().integer().min(0).optional(),
     minPrice: Joi.number().min(0).positive().optional(),
     maxPrice: Joi.number().min(0).positive().optional(),
-    status: Joi.string().valid('sold', 'available', 'reserved').optional()
+    status: Joi.string().valid('sold', 'available', 'ordered').optional()
 })

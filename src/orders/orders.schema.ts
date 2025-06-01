@@ -9,7 +9,7 @@ const schemaDefinition = {
     paymentMethod: {type: String, required: false, enum: ['credit_card', 'paypal', 'bank_transfer']},
     status: {type: String, required: true, enum: ['pending', 'confirmed', 'cancelled', 'delivered'], default: 'pending'},
     price: {type: Number, required: true},
-    notes: {type: String, required: false},
+    note: {type: String, required: false},
 }
 
 const ordersSchema = new Schema(schemaDefinition, {timestamps: true});

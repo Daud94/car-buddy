@@ -9,5 +9,6 @@ exports.RegisterDto = joi_1.default.object({
     firstName: joi_1.default.string().min(2).max(50).required(),
     lastName: joi_1.default.string().min(2).max(50).required(),
     email: joi_1.default.string().email().required(),
-    password: joi_1.default.string().required()
+    role: joi_1.default.string().valid('user', 'dealer'),
+    password: joi_1.default.string().min(8).required()
 });

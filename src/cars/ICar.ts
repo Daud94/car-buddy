@@ -11,5 +11,5 @@ export interface ICar extends AbstractDocument{
     color: string;
     description?: string; // Optional field for additional information
     vin: string; // Vehicle Identification Number
-    status: 'sold' | 'available' | 'reserved'; // Status of the car
+    status: 'sold' | 'available' | 'ordered'; // Status of the car
 }

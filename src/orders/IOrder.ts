@@ -9,5 +9,5 @@ export interface IOrder extends AbstractDocument {
     paymentMethod: 'credit_card' | 'paypal' | 'bank_transfer';
     status: 'pending' | 'completed' | 'cancelled';
     totalPrice: number;
-    notes?: string;
+    note?: string;
 }

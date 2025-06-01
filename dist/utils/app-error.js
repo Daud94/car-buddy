@@ -23,7 +23,7 @@ class AppError extends Error {
     static badRequest(message = 'Bad Request') {
         return new AppError(message, 400);
     }
-    static unauthorized(message = 'Unauthorized', errorCode = null, details = null) {
+    static unauthorized(message = 'Unauthorized') {
         return new AppError(message, 401);
     }
     static forbidden(message = 'Forbidden') {

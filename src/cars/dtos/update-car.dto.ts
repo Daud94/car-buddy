@@ -9,5 +9,5 @@ export const UpdateCarDto = Joi.object({
     mileage: Joi.number().integer().min(0).optional(),
     price: Joi.number().positive().optional(),
     description: Joi.string().max(500).optional(),
-    status: Joi.string().valid('sold', 'available', 'reserved').optional()
+    status: Joi.string().valid('sold', 'available', 'ordered').optional()
 })

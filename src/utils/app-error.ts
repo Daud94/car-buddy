@@ -32,8 +32,6 @@ export class AppError extends Error {
 
     static unauthorized(
         message = 'Unauthorized',
-        errorCode = null,
-        details = null
     ) {
         return new AppError(message, 401)
     }

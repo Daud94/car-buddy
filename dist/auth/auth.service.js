@@ -72,7 +72,7 @@ class AuthService {
     async register(userData) {
         const existingUser = await this.usersService.getUserByEmail(userData.email);
         if (existingUser) {
-            throw app_error_1.AppError.badRequest('Email already exists');
+            throw app_error_1.AppError.conflict('Email already exists');
         }
         const saltRounds = +this.configService.get('SALT_ROUNDS');
         const hashedPassword = await bcrypt.hash(userData.password, saltRounds);

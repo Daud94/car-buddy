@@ -43,7 +43,7 @@ export class AuthService {
     async register(userData: { firstName: string, lastName: string, email: string, password: string }) {
         const existingUser = await this.usersService.getUserByEmail(userData.email);
         if (existingUser) {
-            throw AppError.badRequest('Email already exists');
+            throw AppError.conflict('Email already exists');
         }
         const saltRounds = +this.configService.get('SALT_ROUNDS');
         const hashedPassword = await bcrypt.hash(userData.password, saltRounds);

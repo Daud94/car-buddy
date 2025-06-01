@@ -10,7 +10,7 @@ const schemaDefinition = {
     vin: {type: String, required: true, unique: true},
     color: {type: String, required: true},
     description: {type: String, required: false},
-    status: {type: String, required: true, enum: ['sold', 'available', 'reserved'], default: 'available'},
+    status: {type: String, required: true, enum: ['sold', 'available', 'ordered'], default: 'available'},
 } as const; // Define the schema definition with TypeScript's 'as const' for better type inference
 
 const carsSchema = new Schema(schemaDefinition, {timestamps:true});

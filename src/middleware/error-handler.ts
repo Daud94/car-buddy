@@ -12,52 +12,11 @@ export const errorHandler = (err: any,req: Request, res: Response, next: NextFun
         timestamp: new Date().toISOString(),
     })
 
-    // Joi validation errors
-    if (err instanceof Joi.ValidationError) {
-        const errors = err.details.map((detail) => ({
-            field: detail.path.join('.'),
-            message: detail.message,
-        }))
-
-        return res.status(400).json({
-            success: false,
-            message: 'Validation failed',
-            errors,
-        })
-    }
-
     // Handle AppError instances
     if (err instanceof AppError) {
         return res.status(err.statusCode).json({
             success: false,
             message: err.message
-        })
-    }
-
-    if (err.name === 'SequelizeUniqueConstraintError') {
-        const field = err.errors[0]?.path || 'field'
-        console.error('Database unique constraint failed', field)
-        return res.status(409).json({
-            success: false,
-            message: `${field} already exists`,
-            code: 'UNIQUE_CONSTRAINT_ERROR',
-            field,
-        })
-    }
-
-    if (err.name === 'SequelizeForeignKeyConstraintError') {
-        console.error('Invalid foreign key reference', 'FOREIGN_KEY_ERROR')
-        return res.status(400).json({
-            success: false,
-            message: 'Invalid reference to a related resource',
-            code: 'FOREIGN_KEY_ERROR',
-        })
-    }
-    if (err.name === 'SequelizeDatabaseError') {
-        return res.status(500).json({
-            success: false,
-            message: 'Database error occurred',
-            code: 'DATABASE_ERROR',
         })
     }
 

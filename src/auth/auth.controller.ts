@@ -9,7 +9,6 @@ const authService = new AuthService();
 
 router.post('/register', Body(RegisterDto),async (req:Request, res: Response, next:NextFunction) => {
     try {
-        console.log(req.body)
         await authService.register(req.body);
         res.status(201).json({
             success: true,
