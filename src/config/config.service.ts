@@ -1,9 +1,18 @@
 import dotenv from 'dotenv';
-import { environmentSchema } from './enviroment.validate';
-import { AppError } from '../utils/app-error';
+import {environmentSchema} from './enviroment.validate';
+import {AppError} from '../utils/app-error';
+import lodash from 'lodash';
 
-const envConfig = dotenv.config({override: true});
-console.log("envConfig.parsed", envConfig)
+dotenv.config();
+const env = lodash.pick(process.env, [
+    'PORT',
+    'NODE_ENV',
+    'CONNECTION_STRING',
+    'JWT_SECRET',
+    'JWT_EXPIRATION',
+    'SALT_ROUNDS',
+    'DATABASE'
+]);
 
 export class ConfigService {
     private config: { [key: string]: any } = {};
@@ -13,7 +22,7 @@ export class ConfigService {
     }
 
     private loadConfig(): void {
-        const { error, value } = environmentSchema.validate(envConfig.parsed);
+        const {error, value} = environmentSchema.validate(env);
         if (error) {
             throw AppError.badRequest(`Invalid configuration: ${error.message}`);
         }
