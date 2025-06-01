@@ -3,6 +3,7 @@ import { environmentSchema } from './enviroment.validate';
 import { AppError } from '../utils/app-error';
 
 const envConfig = dotenv.config();
+console.log(process.env)
 
 export class ConfigService {
     private config: { [key: string]: any } = {};
