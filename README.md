@@ -36,7 +36,7 @@ src/
 ### Installation
 1. Clone the repository:
    ```sh
-   git clone <repo-url>
+   git clone https://github.com/Daud94/car-buddy.git
    cd car-buddy
    ```
 2. Install dependencies:
