@@ -93,9 +93,113 @@ npm test
 - **GET /users/:id** — Get user profile
 
 ## Usage Example
-Register, login, and use the JWT token in the `Authorization` header:
+
+### 1. Register a New User
+Request:
 ```http
-Authorization: Bearer <token>
+POST /auth/register
+Content-Type: application/json
+
+{
+  "firstName": "John",
+  "lastName": "Doe",
+  "email": "john@example.com",
+  "password": "password123",
+  "role": "dealer" // or "buyer"
+}
+```
+Response:
+```json
+{
+  "message": "User registered successfully",
+  "user": {
+    "_id": "...",
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "john@example.com",
+    "role": "dealer"
+  }
+}
+```
+
+### 2. Login
+Request:
+```http
+POST /auth/login
+Content-Type: application/json
+
+{
+  "email": "john@example.com",
+  "password": "password123"
+}
+```
+Response:
+```json
+{
+  "token": "<jwt-token>"
+}
+```
+
+### 3. Use JWT Token for Authenticated Requests
+Add the following header to all protected endpoints:
+```http
+Authorization: Bearer <jwt-token>
+```
+
+### 4. Add a Car (Dealer Only)
+Request:
+```http
+POST /cars/add
+Authorization: Bearer <jwt-token>
+Content-Type: application/json
+
+{
+  "make": "Toyota",
+  "model": "Corolla",
+  "year": 2022,
+  "price": 15000
+}
+```
+Response:
+```json
+{
+  "message": "Car added successfully",
+  "car": {
+    "_id": "...",
+    "make": "Toyota",
+    "model": "Corolla",
+    "year": 2022,
+    "price": 15000,
+    "dealerId": "..."
+  }
+}
+```
+
+### 5. Create an Order (Buyer)
+Request:
+```http
+POST /orders/create
+Authorization: Bearer <jwt-token>
+Content-Type: application/json
+
+{
+  "carId": "<car-id>",
+  "dealerId": "<dealer-id>",
+  "note": "Interested in quick purchase."
+}
+```
+Response:
+```json
+{
+  "message": "Order created successfully",
+  "order": {
+    "_id": "...",
+    "carId": "<car-id>",
+    "dealerId": "<dealer-id>",
+    "buyerId": "...",
+    "note": "Interested in quick purchase."
+  }
+}
 ```
 
 ## Contributing
