@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 import { environmentSchema } from './enviroment.validate';
 import { AppError } from '../utils/app-error';
 
-const envConfig = dotenv.config();
+const envConfig = dotenv.config({override: true});
 console.log("envConfig.parsed", envConfig)
 
 export class ConfigService {
