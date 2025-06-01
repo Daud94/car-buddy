@@ -1,10 +1,8 @@
 import dotenv from 'dotenv';
 import { environmentSchema } from './enviroment.validate';
 import { AppError } from '../utils/app-error';
-import path from "node:path";
 
-console.log(__filename)
-const envConfig = dotenv.config({ path: path.join(process.cwd(), '.env') });
+const envConfig = dotenv.config();
 
 export class ConfigService {
     private config: { [key: string]: any } = {};
